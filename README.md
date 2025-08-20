@@ -8,7 +8,7 @@ This project is a simple **E-Commerce backend** built using **Hibernate** to dem
 
 - ✅ **User CRUD** – Create, Read, Update, Delete operations for `User` entity.  
 - ✅ **One-to-One Mapping** – `User ↔ Address` relationship with cascade and orphan removal support.  
-- ⏳ **Upcoming** – One-to-Many (`User ↔ Orders`).  
+- ✅ **Upcoming** – One-to-Many (`User ↔ Orders`).  
 - ⏳ **Upcoming** – Many-to-Many (`Product ↔ Category`).  
 - ⚙️ **Hibernate Configuration** using `hibernate.cfg.xml` (no Spring Data JPA).  
 - 🗂️ **DAO Layer** for clean database interaction.  
