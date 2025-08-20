@@ -14,6 +14,5 @@ public class UtilHib {
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError("Initial SessionFactory creation failed: " + ex);
         }
-//        return sessionFactory;
     }
 }
