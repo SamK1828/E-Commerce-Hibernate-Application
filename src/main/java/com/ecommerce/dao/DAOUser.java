@@ -12,7 +12,7 @@ public class DAOUser {
 	public void saveUser(User user) {
 		Transaction tx = null;
 		try  {
-			Session session = UtilHib.getSessionFactory().openSession();
+			Session session = UtilHib.getFactory().openSession();
 			tx = session.beginTransaction();
 			session.persist(user);
 			tx.commit();
@@ -25,7 +25,7 @@ public class DAOUser {
 
 	public User getUserById(int id) {
 		try {
-			Session session = UtilHib.getSessionFactory().openSession();
+			Session session = UtilHib.getFactory().openSession();
 			return session.get(User.class, id);
 		}
 		catch(Exception e) {
@@ -36,7 +36,7 @@ public class DAOUser {
 
 	public List<User> getAllUsers(){
 		try {
-			Session session = UtilHib.getSessionFactory().openSession();
+			Session session = UtilHib.getFactory().openSession();
 			List<User> userList = session.createQuery("from User", User.class).list();
 			return userList;
 		}
@@ -49,7 +49,7 @@ public class DAOUser {
 	public void updateUser(User user) {
 		Transaction tx = null;
 		try  {
-			Session session = UtilHib.getSessionFactory().openSession();
+			Session session = UtilHib.getFactory().openSession();
 			tx = session.beginTransaction();
 //			session.update(user);
 			session.merge(user);
@@ -64,7 +64,7 @@ public class DAOUser {
 	public void deleteUser(int id) {
 		Transaction tx = null;
 		try  {
-			Session session = UtilHib.getSessionFactory().openSession();
+			Session session = UtilHib.getFactory().openSession();
 			tx = session.beginTransaction();
 			User user = session.get(User.class, id);
 			if (user != null)
