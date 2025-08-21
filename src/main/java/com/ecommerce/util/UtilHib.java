@@ -6,13 +6,17 @@ import org.hibernate.cfg.Configuration;
 public class UtilHib {
 	private static SessionFactory sessionFactory;
 
-    public static SessionFactory getSessionFactory() {
-    	
-        try {
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-            return sessionFactory;
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError("Initial SessionFactory creation failed: " + ex);
+    static{
+        try{
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
+
+    public static SessionFactory getFactory(){
+        return sessionFactory;
+    }
+
 }
