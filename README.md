@@ -95,7 +95,6 @@ A huge thanks to the amazing contributors of this project ❤️
 * 🗃️ Implement **Many-to-Many mapping** for Product & Category.
 * 🔑 Add **Authentication & Authorization**.
 * 🌐 Expose **REST APIs** for external integrations.
-* 📊 Add **unit tests with JUnit & Mockito**.
 
 ---
 
