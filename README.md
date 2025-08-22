@@ -90,10 +90,9 @@ A huge thanks to the amazing contributors of this project ❤️
 ---
 
 ## 🔮 Future Enhancements
-
+* Implementing **CRUD** Operations
 * 🛍️ Implement **One-to-Many mapping** for Orders.
 * 🗃️ Implement **Many-to-Many mapping** for Product & Category.
-* 🔑 Add **Authentication & Authorization**.
 * 🌐 Expose **REST APIs** for external integrations.
 
 ---
