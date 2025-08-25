@@ -17,5 +17,6 @@
 			the table -->
 		<mapping class="com.ecommerce.entity.User" />
 		<mapping class="com.ecommerce.entity.Address" />
+		<mapping class="com.ecommerce.entity.Order"/>
 	</session-factory>
 </hibernate-configuration>
