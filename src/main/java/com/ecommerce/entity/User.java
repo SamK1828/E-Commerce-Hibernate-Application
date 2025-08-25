@@ -39,6 +39,17 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders = new ArrayList<>();
 
+	public void addOrder(Order order) {
+		orders.add(order);
+		order.setUser(this);
+	}
+
+	public void removeOrder(Order order) {
+		orders.remove(order);
+		order.setUser(null);
+	}
+	
+
 	public User() {
 	}
 
@@ -49,6 +60,12 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.address = address;
+	}
+	
+
+	public User(String username, String email) {
+		this.username = username;
+		this.email = email;
 	}
 
 	// Getters & Setters
@@ -90,6 +107,14 @@ public class User {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 }

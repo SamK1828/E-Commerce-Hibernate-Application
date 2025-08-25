@@ -29,7 +29,12 @@ public class Order {
         this.amount = amount;
         this.orderDate = orderDate;
     }
-
+    public Order(Long id, String productName, Double amount, LocalDate orderDate) {
+        this.id = id;
+        this.productName = productName;
+        this.amount = amount;
+        this.orderDate = orderDate;
+    }
     // Getters & Setters
     public Long getId() {
         return id;
