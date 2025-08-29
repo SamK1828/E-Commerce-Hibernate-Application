@@ -12,41 +12,85 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-    @Table(name = "products")
-    public class Product {
+@Table(name = "products")
+public class Product {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-        private String name;
+	private String name;
 
-        @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-        private Set<Category> categories = new HashSet<>();
+	private Double price; // ✅ Added price field
 
-        // Getters and Setters
-        public Long getId() {
-            return id;
-        }
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories = new HashSet<>();
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+	@ManyToMany(mappedBy = "products")
+	private Set<Order> orders = new HashSet<>(); // ✅ Added Order relation
 
-        public String getName() {
-            return name;
-        }
+	public Long getId() {
+		return id;
+	}
 
-        public void setName(String name) {
-            this.name = name;
-        }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-        public Set<Category> getCategories() {
-            return categories;
-        }
+	public String getName() {
+		return name;
+	}
 
-        public void setCategories(Set<Category> categories) {
-            this.categories = categories;
-        }
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(int i) {
+		this.price = (double) i;
+	}
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Product(Long id, String name, Double price, Set<Category> categories, Set<Order> orders) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.categories = categories;
+		this.orders = orders;
+	}
+
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	// Getters & Setters
+	// ...
+	
+	
+}
