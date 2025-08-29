@@ -16,7 +16,9 @@
 			updates the existing table and insert the data below the existing data in 
 			the table -->
 		<mapping class="com.ecommerce.entity.User" />
-		<mapping class="com.ecommerce.entity.Address" />
 		<mapping class="com.ecommerce.entity.Order"/>
+		<mapping class="com.ecommerce.entity.Address"/>
+		<mapping class="com.ecommerce.entity.Category"/>
+		<mapping class="com.ecommerce.entity.Product"/>
 	</session-factory>
 </hibernate-configuration>
