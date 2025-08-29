@@ -1,80 +1,115 @@
 package com.ecommerce;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
-import com.ecommerce.dao.DAOUser;
-import com.ecommerce.entity.Address;
-import com.ecommerce.entity.Order;
-import com.ecommerce.entity.User;
-import com.ecommerce.util.UtilHib;
+import com.ecommerce.entity.*;
 
 public class App {
-	public static void main(String[] args) {
-//		DAOUser userDAO = new DAOUser();
-		// Testing CRUD Operations
-		// // Create
-		// User user1 = new User("Samarth", "pass123", "sam@example.com");
-		// userDAO.saveUser(user1);
-		//
-		// // Read
-		// System.out.println("All Users: " + userDAO.getAllUsers());
-		//
-		// // Update
-		// user1.setPassword("newpassword");
-		// userDAO.updateUser(user1);
-		//
-		// // Delete
-		// userDAO.deleteUser(user1.getId());
-		// // Testing One to One Association
-		// Address addr = new Address();
-		// addr.setStreet("Manjunadha PG, Hinjewadi, Pune");
-		// addr.setCity("Pune");
-		// addr.setState("MH");
-		// addr.setZip("411057");
+    public static void main(String[] args) {
+        // Build SessionFactory
+        SessionFactory factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Address.class)
+                .addAnnotatedClass(Order.class)
+                .addAnnotatedClass(Product.class)
+                .addAnnotatedClass(Category.class)
+                .buildSessionFactory();
 
-		// User u = new User();
-		// u.setUsername("samarth");
-		// u.setPassword("sam123");
-		// u.setEmail("samarth@example.com");
-		// u.setAddress(addr);
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
 
-		// userDAO.saveUser(u);
+        try {
+            // ✅ Create Address
+            Address addr = new Address();
+            addr.setStreet("MG Road");
+            addr.setCity("Bangalore");
+            addr.setState("Karnataka");
+            addr.setZip("560001");
 
-		// Testing One To Many Operation
-		Session session = UtilHib.getFactory().openSession();
-		Transaction tx = session.beginTransaction();
+            // ✅ Create User
+            User user = new User();
+            user.setUsername("samarth");
+            user.setPassword("secret123");
+            user.setEmail("samarth@example.com");
+            user.setAddress(addr);
 
-		// Create User
-		User user = new User("Samarth", "samarth@example.com");
-		user.setPassword("sam123");
+            // ✅ Create Products
+            Product phone = new Product();
+            phone.setName("Smartphone");
+            phone.setPrice(25000);
 
-		// Create Orders
-		Order o1 = new Order("Laptop", 55000.0, LocalDate.now());
-		Order o2 = new Order("Smartphone", 25000.0, LocalDate.now());
+            Product tshirt = new Product();
+            tshirt.setName("T-Shirt");
+            tshirt.setPrice(1200);
 
-		// Add Orders to User
-		user.addOrder(o1);
-		user.addOrder(o2);
+            // ✅ Create Categories
+            Category electronics = new Category();
+            electronics.setName("Electronics");
 
-		// Save User (Cascade saves orders)
-		session.persist(user);
+            Category fashion = new Category();
+            fashion.setName("Fashion");
 
-		tx.commit();
-		session.close();
+            // Link Products ↔ Categories
+            phone.getCategories().add(electronics);
+            electronics.getProducts().add(phone);
 
-		// Fetch and display
-		Session session2 = UtilHib.getFactory().openSession();
-		User fetchedUser = session2.get(User.class, user.getId());
-		System.out.println("User: " + fetchedUser.getUsername());
+            tshirt.getCategories().add(fashion);
+            fashion.getProducts().add(tshirt);
 
-		for (Order order : fetchedUser.getOrders()) {
-			System.out.println(order);
-		}
+            // ✅ Create Order
+            Order order = new Order();
+            order.setOrderNumber("ORD001");
+            order.setAmount(26200.0);
+            order.setOrderDate(LocalDate.now());
+            order.setUser(user);
 
-		session2.close();
+            // Link Order ↔ Products
+            order.getProducts().add(phone);
+            order.getProducts().add(tshirt);
 
-	}
+            phone.getOrders().add(order);
+            tshirt.getOrders().add(order);
+
+            // ✅ Persist everything
+            session.persist(user);
+            session.persist(order);
+            session.persist(phone);
+            session.persist(tshirt);
+            session.persist(electronics);
+            session.persist(fashion);
+
+            tx.commit();
+
+            // ✅ Fetch back order
+            Session newSession = factory.openSession();
+            Order fetchedOrder = newSession.get(Order.class, order.getId());
+
+            System.out.println("Order Number: " + fetchedOrder.getOrderNumber());
+            System.out.println("User: " + fetchedOrder.getUser().getUsername());
+            System.out.println("Products in Order:");
+
+            for (Product p : fetchedOrder.getProducts()) {
+                System.out.println(" - " + p.getName() + " | Price: " + p.getPrice());
+                for (Category c : p.getCategories()) {
+                    System.out.println("   -> Category: " + c.getName());
+                }
+            }
+
+            newSession.close();
+            factory.close();
+
+            System.out.println("✅ Associations tested successfully!");
+
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        }
+    }
 }
