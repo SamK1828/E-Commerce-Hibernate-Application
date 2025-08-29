@@ -9,9 +9,10 @@ public class UtilHib {
     static{
         try{
             sessionFactory = new Configuration().configure().buildSessionFactory();
+            System.out.println("SessionFactory created successfully");
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("SessionFactory creation failed: " + e.getMessage());
         }
     }
 
