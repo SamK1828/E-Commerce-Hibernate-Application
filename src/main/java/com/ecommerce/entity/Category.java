@@ -1,6 +1,8 @@
 package com.ecommerce.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -9,48 +11,48 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
 public class Category {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String name;
+	private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> products = new HashSet<>();
+	@ManyToMany(mappedBy = "categories")
+	private Set<Product> products = new HashSet<>();
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+	// Getters and setters
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Set<Product> getProducts() {
-        return products;
-    }
+	public Set<Product> getProducts() {
+		return products;
+	}
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
 }
