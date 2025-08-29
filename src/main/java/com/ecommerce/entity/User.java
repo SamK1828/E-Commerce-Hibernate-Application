@@ -38,6 +38,8 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders = new ArrayList<>();
+	
+	
 
 	public void addOrder(Order order) {
 		orders.add(order);
