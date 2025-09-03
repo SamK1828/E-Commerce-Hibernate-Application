@@ -26,7 +26,7 @@ public class DAOCategory {
         }
     }
 
-    public Category getCategoryById(int id) {
+    public Category getCategoryById(Long id) {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Category.class, id);
         }
