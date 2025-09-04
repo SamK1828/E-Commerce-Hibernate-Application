@@ -23,7 +23,7 @@ public class DAOUser {
 		}
 	}
 
-	public User getUserById(int id) {
+	public User getUserById(Long id) {
 		try {
 			Session session = UtilHib.getFactory().openSession();
 			return session.get(User.class, id);
@@ -61,7 +61,7 @@ public class DAOUser {
 		}
 	}
 
-	public void deleteUser(int id) {
+	public void deleteUser(Long id) {
 		Transaction tx = null;
 		try  {
 			Session session = UtilHib.getFactory().openSession();
