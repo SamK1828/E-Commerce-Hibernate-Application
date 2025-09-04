@@ -1,5 +1,7 @@
 package com.ecommerce.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -21,7 +23,8 @@ public class DAOCategory {
             session.persist(category);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
+            if (tx != null)
+                tx.rollback();
             e.printStackTrace();
         }
     }
@@ -40,7 +43,8 @@ public class DAOCategory {
             session.merge(category);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
+            if (tx != null)
+                tx.rollback();
             e.printStackTrace();
         }
     }
@@ -53,8 +57,25 @@ public class DAOCategory {
             session.remove(category);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
+            if (tx != null)
+                tx.rollback();
             e.printStackTrace();
+        }
+    }
+
+    public List<Category> getAllCategories() {
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+
+            List<Category> categories = session.createQuery("from Category", Category.class).list();
+            tx.commit();
+            return categories;
+        } catch (Exception e) {
+            if (tx != null)
+                tx.rollback();
+            e.printStackTrace();
+            return null;
         }
     }
 }
