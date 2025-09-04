@@ -1,0 +1,47 @@
+package com.ecommerce.service.impl;
+
+import java.util.List;
+
+import com.ecommerce.dao.DAOUser;
+import com.ecommerce.entity.User;
+import com.ecommerce.service.UserService;
+
+public class UserServiceImpl implements UserService {
+     private final DAOUser userDao;
+
+    public UserServiceImpl(DAOUser userDao) {
+        this.userDao = userDao;
+    }
+
+    @Override
+    public User createUser(User user) {
+        userDao.saveUser(user);
+        return user;
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
+    @Override
+    public User updateUser(User user) {
+        userDao.updateUser(user);
+        return user;
+    }
+
+    @Override
+    public boolean deleteUser(Long id) {
+        User user = userDao.getUserById(id);
+        if (user != null) {
+            userDao.deleteUser(id);
+            return true;
+        }
+        return false;
+    }
+}
