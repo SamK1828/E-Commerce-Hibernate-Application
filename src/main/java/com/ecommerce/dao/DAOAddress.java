@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.ecommerce.entity.Address;
-import com.ecommerce.entity.Category;
 import com.ecommerce.util.UtilHib;
 
 public class DAOAddress {

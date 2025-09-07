@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 
 import com.ecommerce.entity.Order;
 import com.ecommerce.util.UtilHib;
-import com.ecommerce.entity.Order;
 
 public class DAOOrder {
     private SessionFactory sessionFactory;
