@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        throw new UnsupportedOperationException("getAllProducts not implemented in DAOProduct yet");
+        return productDao.getAllProducts();
     }
 
     @Override

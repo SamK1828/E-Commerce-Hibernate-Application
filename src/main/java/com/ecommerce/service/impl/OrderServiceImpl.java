@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        throw new UnsupportedOperationException("getAllOrders not implemented in DAOOrder yet");
+        return orderDao.getAllOrders();
     }
 
     @Override

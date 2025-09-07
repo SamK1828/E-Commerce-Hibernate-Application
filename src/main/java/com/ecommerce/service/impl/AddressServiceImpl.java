@@ -26,7 +26,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<Address> getAllAddresses() {
-        throw new UnsupportedOperationException("getAllAddresses not implemented in DAOAddress yet");
+        return addressDao.getAllAddresses();
     }
 
     @Override

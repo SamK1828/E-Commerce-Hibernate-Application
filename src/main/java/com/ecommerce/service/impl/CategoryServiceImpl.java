@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getAllCategories() {
 
-        throw new UnsupportedOperationException("Unimplemented method 'getAllCategories'");
+        return categoryDao.getAllCategories();
     }
 
     @Override
