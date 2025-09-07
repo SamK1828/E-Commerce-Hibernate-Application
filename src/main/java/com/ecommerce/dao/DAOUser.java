@@ -3,16 +3,22 @@ package com.ecommerce.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.ecommerce.entity.User;
-import com.ecommerce.util.UtilHib;
 
 public class DAOUser {
+	private final SessionFactory sessionFactory;
+
+	public DAOUser(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public void saveUser(User user) {
 		Transaction tx = null;
 		try  {
-			Session session = UtilHib.getFactory().openSession();
+			Session session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			session.persist(user);
 			tx.commit();
@@ -25,7 +31,7 @@ public class DAOUser {
 
 	public User getUserById(Long id) {
 		try {
-			Session session = UtilHib.getFactory().openSession();
+			Session session = sessionFactory.openSession();
 			return session.get(User.class, id);
 		}
 		catch(Exception e) {
@@ -36,7 +42,7 @@ public class DAOUser {
 
 	public List<User> getAllUsers(){
 		try {
-			Session session = UtilHib.getFactory().openSession();
+			Session session = sessionFactory.openSession();
 			List<User> userList = session.createQuery("from User", User.class).list();
 			return userList;
 		}
@@ -49,7 +55,7 @@ public class DAOUser {
 	public void updateUser(User user) {
 		Transaction tx = null;
 		try  {
-			Session session = UtilHib.getFactory().openSession();
+			Session session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 //			session.update(user);
 			session.merge(user);
@@ -64,7 +70,7 @@ public class DAOUser {
 	public void deleteUser(Long id) {
 		Transaction tx = null;
 		try  {
-			Session session = UtilHib.getFactory().openSession();
+			Session session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			User user = session.get(User.class, id);
 			if (user != null)

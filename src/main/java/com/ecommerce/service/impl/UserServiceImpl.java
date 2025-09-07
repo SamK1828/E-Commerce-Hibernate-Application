@@ -2,6 +2,8 @@ package com.ecommerce.service.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.ecommerce.dao.DAOUser;
 import com.ecommerce.entity.User;
 import com.ecommerce.service.UserService;
@@ -9,8 +11,8 @@ import com.ecommerce.service.UserService;
 public class UserServiceImpl implements UserService {
      private final DAOUser userDao;
 
-    public UserServiceImpl(DAOUser userDao) {
-        this.userDao = userDao;
+    public UserServiceImpl(SessionFactory sessionFactory) {
+        this.userDao = new DAOUser(sessionFactory);
     }
 
     @Override
