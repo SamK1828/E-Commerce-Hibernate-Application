@@ -1,7 +1,6 @@
 package com.ecommerce;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
