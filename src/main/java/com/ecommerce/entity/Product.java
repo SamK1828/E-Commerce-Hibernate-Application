@@ -13,8 +13,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "products")
