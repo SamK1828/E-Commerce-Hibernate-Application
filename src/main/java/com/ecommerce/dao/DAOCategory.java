@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.ecommerce.entity.Category;
+import com.ecommerce.util.UtilHib;
 
 public class DAOCategory {
     private SessionFactory sessionFactory;
@@ -64,16 +65,15 @@ public class DAOCategory {
     }
 
     public List<Category> getAllCategories() {
-        Transaction tx = null;
-        try (Session session = sessionFactory.openSession()) {
-            tx = session.beginTransaction();
+
+        try {
+            Session session = UtilHib.getFactory().openSession();
 
             List<Category> categories = session.createQuery("from Category", Category.class).list();
-            tx.commit();
+
             return categories;
         } catch (Exception e) {
-            if (tx != null)
-                tx.rollback();
+
             e.printStackTrace();
             return null;
         }

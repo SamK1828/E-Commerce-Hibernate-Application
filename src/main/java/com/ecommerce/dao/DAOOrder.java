@@ -1,9 +1,13 @@
 package com.ecommerce.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.ecommerce.entity.Order;
+import com.ecommerce.util.UtilHib;
 import com.ecommerce.entity.Order;
 
 public class DAOOrder {
@@ -21,7 +25,8 @@ public class DAOOrder {
             session.persist(order);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
+            if (tx != null)
+                tx.rollback();
             e.printStackTrace();
         }
     }
@@ -40,7 +45,8 @@ public class DAOOrder {
             session.merge(order);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
+            if (tx != null)
+                tx.rollback();
             e.printStackTrace();
         }
     }
@@ -53,8 +59,24 @@ public class DAOOrder {
             session.remove(order);
             tx.commit();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
+            if (tx != null)
+                tx.rollback();
             e.printStackTrace();
+        }
+    }
+
+    public List<Order> getAllOrders() {
+
+        try {
+            Session session = UtilHib.getFactory().openSession();
+
+            List<Order> orders = session.createQuery("from Order", Order.class).list();
+
+            return orders;
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return null;
         }
     }
 }

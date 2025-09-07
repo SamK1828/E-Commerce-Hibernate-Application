@@ -1,9 +1,13 @@
 package com.ecommerce.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.ecommerce.entity.Product;
+import com.ecommerce.util.UtilHib;
 import com.ecommerce.entity.Product;
 
 public class DAOProduct {
@@ -58,6 +62,20 @@ public class DAOProduct {
             if (tx != null)
                 tx.rollback();
             e.printStackTrace();
+        }
+    }
+
+    public List<Product> getAllProducts() {
+
+        try {
+            Session session = UtilHib.getFactory().openSession();
+
+            List<Product> products = session.createQuery("from Product", Product.class).list();
+
+            return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
