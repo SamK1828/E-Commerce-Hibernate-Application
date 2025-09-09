@@ -2,15 +2,18 @@ package com.ecommerce.service.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.ecommerce.dao.DAOAddress;
 import com.ecommerce.entity.Address;
 import com.ecommerce.service.AddressService;
+import com.mysql.cj.Session;
 
 public class AddressServiceImpl implements AddressService {
        private final DAOAddress addressDao;
 
-    public AddressServiceImpl(DAOAddress addressDao) {
-        this.addressDao = addressDao;
+    public AddressServiceImpl(SessionFactory factory) {
+        this.addressDao = new DAOAddress(factory);
     }
 
     @Override
