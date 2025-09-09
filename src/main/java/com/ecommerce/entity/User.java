@@ -32,45 +32,20 @@ public class User {
 	@Column(nullable = false, unique = true, length = 100)
 	private String email;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_id", unique = true)
-	private Address address;
+	// ✅ One User → Many Addresses
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<Address> addresses = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Order> orders = new ArrayList<>();
-	
-	
-
-	public void addOrder(Order order) {
-		orders.add(order);
-		order.setUser(this);
+	public void addAddress(Address address) {
+		addresses.add(address);
+		address.setUser(this);
 	}
 
-	public void removeOrder(Order order) {
-		orders.remove(order);
-		order.setUser(null);
-	}
-	
-
-	public User() {
+	public void removeAddress(Address address) {
+		addresses.remove(address);
+		address.setUser(null);
 	}
 
-	public User(int id, String username, String password, String email, Address address) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.address = address;
-	}
-	
-
-	public User(String username, String email) {
-		this.username = username;
-		this.email = email;
-	}
-
-	// Getters & Setters
 	public int getId() {
 		return id;
 	}
@@ -103,20 +78,13 @@ public class User {
 		this.email = email;
 	}
 
-	public Address getAddress() {
-		return address;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
+	
 }
