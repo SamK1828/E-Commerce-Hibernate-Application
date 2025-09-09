@@ -10,25 +10,26 @@ import com.ecommerce.util.UtilHib;
 
 public class UserController {
 
-    // private static UserService userService = new UserServiceImpl(UtilHib.getFactory());
-    
+    // private static UserService userService = new
+    // UserServiceImpl(UtilHib.getFactory());
 
     // public static void main(String[] args) {
-    //     // // Create a new user 
-    //     // User newUser = new User();
-    //     // newUser.setUsername("Samarth");
-    //     // newUser.setEmail("samarth@example.com");
-    //     // newUser.setPassword("12345");
-    //     // User savedUser = userService.createUser(newUser);
-    //     // System.out.println("User created: " + savedUser.getUsername());
-    //     // // Fetch all users
-    //     // System.out.println("\nFetching all users from DB:");
-    //     // for (User u : userService.getAllUsers()) {
-    //     //     System.out.println(u.getId() + " | " + u.getUsername() + " | " + u.getEmail());
-    //     // }
+    // // // Create a new user
+    // // User newUser = new User();
+    // // newUser.setUsername("Samarth");
+    // // newUser.setEmail("samarth@example.com");
+    // // newUser.setPassword("12345");
+    // // User savedUser = userService.createUser(newUser);
+    // // System.out.println("User created: " + savedUser.getUsername());
+    // // // Fetch all users
+    // // System.out.println("\nFetching all users from DB:");
+    // // for (User u : userService.getAllUsers()) {
+    // // System.out.println(u.getId() + " | " + u.getUsername() + " | " +
+    // u.getEmail());
+    // // }
     // }
 
-     private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     private static final UserService userService = new UserServiceImpl(UtilHib.getFactory());
 
     public static void userMenu() {
@@ -46,13 +47,21 @@ public class UserController {
             sc.nextLine(); // consume newline
 
             switch (choice) {
-                case 1 : createUser();
-                case 2 : getUserById();
-                case 3 : getAllUsers();
-                case 4 : updateUser();
-                case 5 : deleteUser();
-                case 0 : { return; }
-                default : System.out.println("❌ Invalid choice, try again.");
+                case 1:
+                    createUser();
+                case 2:
+                    getUserById();
+                case 3:
+                    getAllUsers();
+                case 4:
+                    updateUser();
+                case 5:
+                    deleteUser();
+                case 0: {
+                    return;
+                }
+                default:
+                    System.out.println("❌ Invalid choice, try again.");
             }
         }
     }
@@ -92,9 +101,8 @@ public class UserController {
         if (users.isEmpty()) {
             System.out.println("⚠️ No users found!");
         } else {
-            users.forEach(u -> 
-                System.out.println("ID: " + u.getId() + " | Username: " + u.getUsername() + " | Email: " + u.getEmail())
-            );
+            users.forEach(u -> System.out
+                    .println("ID: " + u.getId() + " | Username: " + u.getUsername() + " | Email: " + u.getEmail()));
         }
     }
 

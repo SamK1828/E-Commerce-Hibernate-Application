@@ -57,17 +57,17 @@ public class MainController {
                     UserController.userMenu();
                     break;
                 // case 2:
-                //     AddressController.addressMenu();
-                //     break;
+                // AddressController.addressMenu();
+                // break;
                 // case 3:
-                //     OrderController.orderMenu(); // to be implemented
-                //     break;
+                // OrderController.orderMenu(); // to be implemented
+                // break;
                 // case 4:
-                //     ProductController.productMenu(); // to be implemented
-                //     break;
+                // ProductController.productMenu(); // to be implemented
+                // break;
                 // case 5:
-                //     CategoryController.categoryMenu(); // to be implemented
-                //     break;
+                // CategoryController.categoryMenu(); // to be implemented
+                // break;
                 case 0:
                     System.out.println("👋 Exiting... Goodbye!");
                     return;
