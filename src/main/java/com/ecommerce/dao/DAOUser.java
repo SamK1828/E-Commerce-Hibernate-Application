@@ -18,18 +18,22 @@ public class DAOUser {
 	public void saveUser(User user) {
 		Transaction tx = null;
 		Session session = null;
-		try  {
+		try {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			session.persist(user);
+			System.out.println("User created with ID: " + user.getId());
 			tx.commit();
+			session.close(); // ✅ flush session
 		} catch (Exception e) {
 			if (tx != null)
 				tx.rollback();
-			
-		}finally {
-        if (session != null) session.close(); // ✅ close session
-    }
+			e.printStackTrace();
+
+		} finally {
+			if (session != null)
+				session.close(); // ✅ close session
+		}
 	}
 
 	public User getUserById(int id) {
@@ -37,20 +41,18 @@ public class DAOUser {
 		try {
 			session = sessionFactory.openSession();
 			return session.get(User.class, id);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		try {
 			Session session = sessionFactory.openSession();
 			List<User> userList = session.createQuery("from User", User.class).list();
 			return userList;
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -58,10 +60,10 @@ public class DAOUser {
 
 	public void updateUser(User user) {
 		Transaction tx = null;
-		try  {
+		try {
 			Session session = sessionFactory.openSession();
 			tx = session.beginTransaction();
-//			session.update(user);
+			// session.update(user);
 			session.merge(user);
 			tx.commit();
 		} catch (Exception e) {
@@ -73,7 +75,7 @@ public class DAOUser {
 
 	public void deleteUser(int id) {
 		Transaction tx = null;
-		try  {
+		try {
 			Session session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			User user = session.get(User.class, id);
