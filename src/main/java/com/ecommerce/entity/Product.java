@@ -86,7 +86,10 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}
 	// Getters & Setters
 	// ...
 	

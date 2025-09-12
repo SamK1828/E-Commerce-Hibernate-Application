@@ -87,7 +87,11 @@ public class Order {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderNumber=" + orderNumber + ", amount=" + amount + ", orderDate=" + orderDate
+				+ "]";
+	}
 	// Getters & Setters
 	// ...
 	

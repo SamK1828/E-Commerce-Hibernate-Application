@@ -81,5 +81,8 @@ public class Address {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
+	}
 }
