@@ -56,9 +56,9 @@ public class MainController {
                 case 1:
                     UserController.userMenu();
                     break;
-                // case 2:
-                // AddressController.addressMenu();
-                // break;
+                case 2:
+                AddressController.addressMenu();
+                break;
                 // case 3:
                 // OrderController.orderMenu(); // to be implemented
                 // break;
