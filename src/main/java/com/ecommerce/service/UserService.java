@@ -7,11 +7,11 @@ import com.ecommerce.entity.User;
 public interface UserService {
     User createUser(User user);
 
-    User getUserById(Long id);
+    User getUserById(int id);
 
     List<User> getAllUsers();
 
     User updateUser(User user);
 
-    boolean deleteUser(Long id);
+    boolean deleteUser(int id);
 }

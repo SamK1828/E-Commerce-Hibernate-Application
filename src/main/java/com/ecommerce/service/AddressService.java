@@ -7,9 +7,9 @@ import com.ecommerce.entity.Address;
 
 public interface AddressService {
     Address createAddress(Address address);
-    Address getAddressById(Long id);
+    Address getAddressById(int id);
     List<Address> getAllAddresses();
     Address updateAddress(Address address);
-    boolean deleteAddress(Long id);
+    boolean deleteAddress(int id);
 }
 
