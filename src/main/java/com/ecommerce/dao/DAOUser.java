@@ -17,8 +17,9 @@ public class DAOUser {
 
 	public void saveUser(User user) {
 		Transaction tx = null;
+		Session session = null;
 		try  {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			session.persist(user);
 			tx.commit();
@@ -26,12 +27,15 @@ public class DAOUser {
 			if (tx != null)
 				tx.rollback();
 			
-		}
+		}finally {
+        if (session != null) session.close(); // ✅ close session
+    }
 	}
 
-	public User getUserById(Long id) {
+	public User getUserById(int id) {
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			return session.get(User.class, id);
 		}
 		catch(Exception e) {
@@ -67,7 +71,7 @@ public class DAOUser {
 		}
 	}
 
-	public void deleteUser(Long id) {
+	public void deleteUser(int id) {
 		Transaction tx = null;
 		try  {
 			Session session = sessionFactory.openSession();

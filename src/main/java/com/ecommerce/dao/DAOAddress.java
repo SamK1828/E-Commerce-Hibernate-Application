@@ -30,7 +30,7 @@ public class DAOAddress {
         }
     }
 
-    public Address getAddressById(Long id) {
+    public Address getAddressById(int id) {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Address.class, id);
         }
