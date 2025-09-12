@@ -22,7 +22,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address getAddressById(Long id) {
+    public Address getAddressById(int id) {
         return addressDAO.getAddressById(id);
     }
 
@@ -38,7 +38,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public boolean deleteAddress(Long id) {
+    public boolean deleteAddress(int id) {
         Address address = addressDAO.getAddressById(id);
         if (address != null) {
             addressDAO.deleteAddress(address);
