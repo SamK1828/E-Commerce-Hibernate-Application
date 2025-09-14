@@ -72,6 +72,13 @@ public class DAOUser {
 			e.printStackTrace();
 		}
 	}
+	public User getUserByPhone(String phoneNumber) {
+    try (Session session = sessionFactory.openSession()) {
+        return session.createQuery("FROM User WHERE phoneNumber = :phone", User.class)
+                      .setParameter("phone", phoneNumber)
+                      .uniqueResult();
+    }
+}
 
 	public void deleteUser(int id) {
 		Transaction tx = null;
