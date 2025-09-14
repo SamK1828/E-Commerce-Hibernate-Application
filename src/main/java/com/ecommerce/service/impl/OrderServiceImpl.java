@@ -2,6 +2,8 @@ package com.ecommerce.service.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.ecommerce.dao.DAOOrder;
 import com.ecommerce.entity.Order;
 import com.ecommerce.service.OrderService;
@@ -11,8 +13,8 @@ import com.ecommerce.service.OrderService;
 public class OrderServiceImpl implements OrderService {
     private final DAOOrder orderDao;
 
-    public OrderServiceImpl(DAOOrder orderDao) {
-        this.orderDao = orderDao;
+    public OrderServiceImpl(SessionFactory sessionFactory) {
+        this.orderDao = new DAOOrder(sessionFactory);
     }
 
     @Override
