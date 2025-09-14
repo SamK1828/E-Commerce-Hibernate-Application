@@ -30,6 +30,9 @@ public class User {
 	@Column(nullable = false, unique = true, length = 100)
 	private String email;
 
+	@Column(name = "phone_number", unique = true, nullable = false, length = 15)
+	private String phoneNumber;
+
 	// ✅ One User → Many Addresses
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Address> addresses = new ArrayList<>();
@@ -83,9 +86,29 @@ public class User {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + "]";
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
 	}
-	
+	public User( String username, String password, String email, String phoneNumber) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }
