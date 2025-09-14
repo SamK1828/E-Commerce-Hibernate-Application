@@ -225,7 +225,7 @@ public class UserController {
             System.out.println("\n===== User Menu =====");
             System.out.println("1: Create User");
             System.out.println("2: View All Users");
-            System.out.println("3: Get User By ID");
+            System.out.println("3: Get User by Phone Number");
             System.out.println("4: Update User");
             System.out.println("5: Delete User");
             System.out.println("6: Back to Main Menu");
@@ -247,7 +247,7 @@ public class UserController {
                     viewAllUsers();
                     break;
                 case 3:
-                    getUserById();
+                    getUserByPhoneNumber();
                     break;
                 case 4:
                     updateUser();
@@ -274,10 +274,14 @@ public class UserController {
         System.out.print("Enter password: ");
         String password = sc.nextLine();
 
-        User user = new User();
-        user.setUsername(name);
-        user.setEmail(email);
-        user.setPassword(password);
+        System.out.print("Enter phone number: ");
+        String phoneNumber = sc.nextLine();
+
+        User user = new User(name, email, password, phoneNumber);
+        // user.setUsername(name);
+        // user.setEmail(email);
+        // user.setPassword(password);
+        // user.setPhoneNumber(phoneNumber);
 
         userService.createUser(user);
         System.out.println("User created successfully!");
@@ -293,10 +297,10 @@ public class UserController {
         }
     }
 
-    private static void getUserById() {
-        System.out.print("Enter User ID: ");
-        int id = Integer.parseInt(sc.nextLine());
-        User user = userService.getUserById(id);
+    private static void getUserByPhoneNumber() {
+        System.out.print("Enter User Phone Number: ");
+        String phoneNumber = sc.nextLine();
+        User user = userService.getUserByPhoneNumber(phoneNumber);
 
         if (user != null) {
             System.out.println("User: " + user.getId() + " | " + user.getUsername() + " | " + user.getEmail());
