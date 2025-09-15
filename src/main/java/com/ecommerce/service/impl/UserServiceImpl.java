@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteUser(int id) {
-        User user = userDao.getUserById(id);
+    public boolean deleteUser(String phoneNumber) {
+        User user = userDao.getUserByPhone(phoneNumber);
         if (user != null) {
-            userDao.deleteUser(id);
+            userDao.deleteUser(user.getId());
             return true;
         }
         return false;
@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByPhoneNumber(String phoneNumber) {
-        // TODO Auto-generated method stub
         return userDao.getUserByPhone(phoneNumber);
     }
 }
