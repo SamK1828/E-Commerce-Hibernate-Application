@@ -66,13 +66,12 @@ public class AddressController {
 
 
         // Proper way: fetch user object
-        System.out.print("Enter User ID for this Address: ");
-        int userId = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Enter Phone Number for this Address: ");
+        String phoneNumber = scanner.nextLine();
 
         // fetch user from service
         UserService userService = new UserServiceImpl(UtilHib.getFactory());
-        User user = userService.getUserById(userId);
+        User user = userService.getUserByPhoneNumber(phoneNumber);
         if (user == null) {
             System.out.println("❌ User not found. Cannot assign address.");
             return;
