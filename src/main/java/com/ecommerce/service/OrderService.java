@@ -6,8 +6,8 @@ import com.ecommerce.entity.Order;
 
 public interface OrderService {
     Order createOrder(Order order);
-    Order getOrderById(Long id);
+    Order getOrderById(int id);
     List<Order> getAllOrders();
     Order updateOrder(Order order);
-    boolean deleteOrder(Long id);
+    boolean deleteOrder(int id);
 }
