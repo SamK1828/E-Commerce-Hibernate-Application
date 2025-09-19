@@ -62,9 +62,9 @@ public class MainController {
                 case 3:
                     OrderController.orderMenu(); // to be implemented
                     break;
-                case 4:
-                    // ProductController.productMenu(); // to be implemented
-                    // break;
+                // case 4:
+                //     ProductController.productMenu(); // to be implemented
+                //     break;
                     // case 5:
                     // CategoryController.categoryMenu(); // to be implemented
                     // break;
