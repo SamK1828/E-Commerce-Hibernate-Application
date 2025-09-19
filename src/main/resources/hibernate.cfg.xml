@@ -10,7 +10,7 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3307/ecommerce_db?useSSL=false</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- property name="hibernate.hbm2ddl.auto">update</property> -->
 		<!-- create term creates the new table and insert the data but update term 
 			updates the existing table and insert the data below the existing data in 
