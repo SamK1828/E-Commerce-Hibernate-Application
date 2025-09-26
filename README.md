@@ -1,52 +1,74 @@
 # 🛒 E-Commerce Hibernate Application
 
-This project is a simple **E-Commerce backend** built using **Hibernate** to demonstrate ORM concepts, entity relationships, and CRUD operations. It showcases step-by-step implementation of Hibernate mappings with a modular DAO structure.
+This project is a simple **E-Commerce backend** built using **Hibernate ORM**.
+It demonstrates entity relationships, modular DAO-Service-Controller structure, and **console-based CRUD operations** for managing Users, Addresses, Orders, Products, and Categories.
 
 ---
 
 ## 🚀 Features
 
-- ✅ **User CRUD** – Create, Read, Update, Delete operations for `User` entity.  
-- ✅ **One-to-One Mapping** – `User ↔ Address` relationship with cascade and orphan removal support.  
-- ✅ **Upcoming** – One-to-Many (`User ↔ Orders`).  
-- ⏳ **Upcoming** – Many-to-Many (`Product ↔ Category`).  
-- ⚙️ **Hibernate Configuration** using `hibernate.cfg.xml` (no Spring Data JPA).  
-- 🗂️ **DAO Layer** for clean database interaction.  
+* ✅ **User CRUD** – Full Create, Read, Update, Delete operations.
+
+  * Users identified internally by **ID (PK)**.
+  * **Phone Number used as external identifier** in menus and operations.
+
+* ✅ **One-to-One Mapping** – `User ↔ Address` relationship.
+
+  * Multiple addresses supported per user.
+  * Cascade and orphan removal handled.
+
+* ✅ **Address CRUD** – Fully implemented with **phone number lookup**.
+
+* ✅ **Order CRUD** – Users can place and manage orders.
+
+  * Linked with user via `@ManyToOne`.
+
+* ✅ **Product CRUD** – Add, update, view, and delete products.
+
+* ✅ **Category CRUD** – Manage categories with relation to products.
+
+* ⚙️ **Hibernate Configuration** using `hibernate.cfg.xml` (no Spring Data JPA).
+
+* 🗂️ **Layered Architecture** –
+
+  * **DAO Layer** → DB operations.
+  * **Service Layer** → Business logic.
+  * **Controller Layer** → Console-driven menus.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- ☕ **Java 8+**  
-- 🏗️ **Hibernate ORM**  
-- 🐬 **MySQL** (adaptable to other RDBMS)  
-- 📦 **Maven** (dependency management)  
+* ☕ **Java 8+**
+* 🏗️ **Hibernate ORM (6.x)**
+* 🐬 **MySQL 8+**
+* 📦 **Maven** (dependency management)
+* 🖥️ **Console-based UI**
 
 ---
 
 ## 📂 Project Structure
 
 ```
-
 src/main/java
-├── com.ecommerce.model   # Entities (User, Address, Order, Product, Category)
-├── com.ecommerce.dao     # DAO classes for DB operations
-├── com.ecommerce.util    # Hibernate utility (SessionFactory)
-└── com.ecommerce.App     # Main entry point
-
-````
+├── com.ecommerce.entity     # Entities (User, Address, Order, Product, Category)
+├── com.ecommerce.dao        # DAO classes for DB operations
+├── com.ecommerce.service    # Service layer
+├── com.ecommerce.controller # Console menu controllers
+├── com.ecommerce.util       # Hibernate utility (SessionFactory)
+└── com.ecommerce.App        # Main entry point
+```
 
 ---
 
 ## ⚡ Getting Started
 
-Follow these steps to run the project locally:
-
 ### 1️⃣ Clone the repository
+
 ```bash
 git clone https://github.com/<username>/<repo-name>.git
 cd <repo-name>
-````
+```
 
 ### 2️⃣ Configure Database
 
@@ -71,32 +93,34 @@ mvn exec:java -Dexec.mainClass="com.ecommerce.App"
 
 This project is designed for:
 
-* Learning **Hibernate ORM** from scratch.
+* Learning **Hibernate ORM** with practical console menus.
 * Practicing **entity relationships** (One-to-One, One-to-Many, Many-to-Many).
-* Demonstrating **CRUD operations without Spring Data JPA**.
-* Serving as a **starter template** for Hibernate-based applications.
+* Demonstrating **DAO-Service-Controller pattern** without Spring Boot/JPA.
+* Serving as a **starter project** for Hibernate-based applications.
 
 ---
 
 ## 🧑‍🤝‍🧑 Contributors
 
-A huge thanks to the amazing contributors of this project ❤️
-
-| Name                                                              | GitHub                  | Role                                       |
-| ----------------------------------------------------------------- | ----------------------- | ------------------------------------------ |
-| [**Ranjay Devendra Singh**](https://github.com/ranjay24)          | 🐙 `@ranjay24`          | Hibernate Associations Creator |
-| [**Samarth Deelip Kalegaonkar**](https://github.com/SamK1828) | 🐙 `@SamK1828` | Repository Creator & Backend Developer            |
+| Name                                                          | GitHub         | Role                                          |
+| ------------------------------------------------------------- | -------------- | --------------------------------------------- |
+| [**Ranjay Devendra Singh**](https://github.com/ranjay24)      | 🐙 `@ranjay24` | Hibernate Associations & Mapping Logic        |
+| [**Samarth Deelip Kalegaonkar**](https://github.com/SamK1828) | 🐙 `@SamK1828` | Repository Creator & Full Backend Development |
 
 ---
 
 ## 🔮 Future Enhancements
-* Implementing **CRUD** Operations
-* 🛍️ Implement **One-to-Many mapping** for Orders.
-* 🗃️ Implement **Many-to-Many mapping** for Product & Category.
+
+* 🛍️ Improve **Order-Product relationship** (One-to-Many mapping).
+* 🗃️ Implement **Many-to-Many mapping** for Product & Category with join table.
+* 📦 Add **Cart module**.
 * 🌐 Expose **REST APIs** for external integrations.
+* 🔒 Add **user authentication & roles**.
 
 ---
 
 ## 📜 License
 
 This project is licensed under the **MIT License** – feel free to use and modify it.
+
+👉 Would you like me to also **add sample console screenshots (like the menus you shared)** into the README so it looks even more professional for GitHub?
