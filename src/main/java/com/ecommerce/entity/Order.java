@@ -2,6 +2,7 @@ package com.ecommerce.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ public class Order {
 
 	private String orderNumber;
 	private Double amount;
-	private LocalDate orderDate;
+	private LocalDateTime orderDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
@@ -49,11 +50,11 @@ public class Order {
 		this.amount = amount;
 	}
 
-	public LocalDate getOrderDate() {
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -73,7 +74,7 @@ public class Order {
 		this.products = products;
 	}
 
-	public Order(Long id, String orderNumber, Double amount, LocalDate orderDate, User user, Set<Product> products) {
+	public Order(Long id, String orderNumber, Double amount, LocalDateTime orderDate, User user, Set<Product> products) {
 		super();
 		this.id = id;
 		this.orderNumber = orderNumber;
