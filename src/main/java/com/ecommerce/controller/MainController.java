@@ -6,7 +6,6 @@ public class MainController {
 
     // public static void main(String[] args) {
     // boolean exit = false;
-
     // while(!exit)
     // {
     // System.out.println("\n=== E-COMMERCE CONSOLE APP ===");
@@ -17,9 +16,7 @@ public class MainController {
     // System.out.println("5. Manage Categories");
     // System.out.println("0. Exit");
     // System.out.print("Enter choice: ");
-
     // int choice = sc.nextInt();
-
     // switch (choice) {
     // // case 1 : UserController.userMenu();
     // // case 2 : AddressController.addressMenu();
@@ -32,7 +29,6 @@ public class MainController {
     // System.out.println("Invalid choice!");
     // }
     // }
-
     // System.out.println("Exiting... Bye!");sc.close();}
     // // }
 
