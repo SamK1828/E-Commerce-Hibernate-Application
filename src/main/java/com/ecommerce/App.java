@@ -3,6 +3,7 @@ package com.ecommerce;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.ecommerce.controller.MainController;
 import com.ecommerce.entity.*;
 import com.ecommerce.util.UtilHib;
 
@@ -90,52 +91,55 @@ public class App {
     // }
 
     public static void main(String[] args) {
-        Session session = UtilHib.getFactory().openSession();
-        Transaction tx = null;
+        MainController.main(args);
+        // Session session = UtilHib.getFactory().openSession();
+        // Transaction tx = null;
 
-        try {
-            tx = session.beginTransaction();
+        // try {
+        // tx = session.beginTransaction();
 
-            // Create a user
-            User user = new User();
-            user.setUsername("samarth");
-            user.setPassword("test123");
-            user.setEmail("samarth@example.com");
+        // // Create a user
+        // User user = new User();
+        // user.setUsername("samarth");
+        // user.setPassword("test123");
+        // user.setEmail("samarth@example.com");
 
-            // Create addresses
-            Address addr1 = new Address();
-            addr1.setStreet("MG Road");
-            addr1.setCity("Pune");
-            addr1.setState("MH");
-            addr1.setZip("411001");
+        // // Create addresses
+        // Address addr1 = new Address();
+        // addr1.setStreet("MG Road");
+        // addr1.setCity("Pune");
+        // addr1.setState("MH");
+        // addr1.setZip("411001");
 
-            Address addr2 = new Address();
-            addr2.setStreet("IT Park Road");
-            addr2.setCity("Nagpur");
-            addr2.setState("MH");
-            addr2.setZip("440001");
+        // Address addr2 = new Address();
+        // addr2.setStreet("IT Park Road");
+        // addr2.setCity("Nagpur");
+        // addr2.setState("MH");
+        // addr2.setZip("440001");
 
-            // link addresses to user
-            user.addAddress(addr1);
-            user.addAddress(addr2);
+        // // link addresses to user
+        // user.addAddress(addr1);
+        // user.addAddress(addr2);
 
-            // save
-            session.persist(user);
+        // // save
+        // session.persist(user);
 
-            tx.commit();
+        // tx.commit();
 
-            // Fetching back
-            session.clear();
-            User dbUser = session.get(User.class, user.getId());
-            System.out.println("User: " + dbUser.getUsername() + " | Email: " + dbUser.getEmail());
-            dbUser.getAddresses().forEach(a -> System.out.println("Address: " + a.getStreet() + ", " + a.getCity()));
+        // // Fetching back
+        // session.clear();
+        // User dbUser = session.get(User.class, user.getId());
+        // System.out.println("User: " + dbUser.getUsername() + " | Email: " +
+        // dbUser.getEmail());
+        // dbUser.getAddresses().forEach(a -> System.out.println("Address: " +
+        // a.getStreet() + ", " + a.getCity()));
 
-        } catch (Exception e) {
-            if (tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        // } catch (Exception e) {
+        // if (tx != null)
+        // tx.rollback();
+        // e.printStackTrace();
+        // } finally {
+        // session.close();
+        // }
     }
 }
