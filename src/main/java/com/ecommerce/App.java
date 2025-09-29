@@ -1,11 +1,5 @@
 package com.ecommerce;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import com.ecommerce.controller.MainController;
-import com.ecommerce.entity.*;
-import com.ecommerce.util.UtilHib;
 
 public class App {
     // public static void main(String[] args) {
