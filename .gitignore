@@ -15,7 +15,7 @@
 /target/
 /build/
 /out/
-
+.vscode/
 # Ignore IDE-specific files
 # IntelliJ IDEA
 .idea/
